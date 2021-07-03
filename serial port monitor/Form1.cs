@@ -9,6 +9,10 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO.Ports;
 using System.Threading;
+using System.Media;
+using System.IO;
+using System.Xml.Serialization;
+
 namespace serial_port_monitor
 {
     
@@ -17,14 +21,21 @@ namespace serial_port_monitor
 
         public static int MILLISECONDS = 1000;
 
-        public Single offset;
-        public Single tare;
-        public Single last;
-        public Single outval;
-        public Single circ;
-        public Single meters;
+        public decimal offset;
+        public decimal tare;
+        public decimal raw;
+        public decimal outval;
+        public decimal circ;
+        public decimal meters;
+        public decimal feet;
+        public decimal voltage;
+        public long sheavenumval;
+        public long maxcableval;
+        public decimal lower;
+        public decimal higher;
         public SerialPort readport;
         public SerialPort writeport;
+        
         public int mode;
         public bool volt;
         public List<string> ports;
@@ -34,19 +45,29 @@ namespace serial_port_monitor
         private System.Windows.Forms.Timer timer;
         public System.Windows.Forms.Timer flash;
         public System.Windows.Forms.Timer myTimer;
+        public System.Windows.Forms.Timer logtimer;
+
+        public StreamWriter sw;
+        public bool logging;
+        public FileInfo logfi;
+
+        SoundPlayer alert;
 
         public Form1()
         {
 
 
             InitializeComponent();
-            this.FormClosing += formClose;
+            this.FormClosing += formClose;    
 
             label8.Text = "";
-            numericUpDown3.Controls[0].Visible = false;
+            //maxcable.Controls[0].Visible = false;
+            //lowerud.Controls[0].Visible = false;
+            //higherud.Controls[0].Visible = false;
 
-            this.tare = 0;
-            last = 0;
+            logging = false;
+
+            raw = 0;
             volt = false;
             hardcount = 0;
 
@@ -54,6 +75,17 @@ namespace serial_port_monitor
             timer.Tick += new EventHandler(timer_Tick);
             timer.Interval = MILLISECONDS; // in miliseconds
             timer.Start();
+
+            alert = new SoundPlayer(@"c:\Windows\Media\Windows Error.wav");
+            lower = 0;
+            higher = 0;
+            myTimer = new System.Windows.Forms.Timer();
+            myTimer.Interval = 5000;
+            myTimer.Tick += (s, e) =>
+            {
+                label17.Hide();
+                myTimer.Stop();
+            };
 
             //flash = new Timer();
             //flash.Tick += new EventHandler(flash_Tick);
@@ -66,10 +98,114 @@ namespace serial_port_monitor
             {
                 Console.WriteLine(ports[i]);
             }
+            ReadSettings();
         }
 
-        private void formClose(object sender, EventArgs e)
+        private void ReadSettings()
         {
+            var settings = Properties.Settings.Default;
+
+            lower = settings.lower;
+            lowerud.Value = lower;
+
+            higher = settings.higher;
+            higherud.Value = higher;
+
+            offset = settings.cableoffset;
+            cableoffset.Value = offset;
+
+            sheavenumval = settings.sheavenumber;
+            sheavenumber.Text = sheavenumval.ToString();
+
+            circ = settings.sheavecirc;
+            sheavecirc.Value = circ;
+
+            maxcableval = settings.maxcable;
+            maxcable.Value = maxcableval;
+            this.progressBar1.Maximum = (int)maxcableval;
+            this.barmax.Text = maxcableval.ToString();
+
+            mode = settings.format;
+            switch (mode)
+            {
+                case 1:
+                    radio_str.Checked = true;
+                    break;
+                case 2:
+                    radio_mc.Checked = true;
+                    break;
+                default:
+                    radio_none.Checked = true;
+                    mode = 0;
+                    break;
+            }
+
+            tare = settings.zero;
+            this.label1.Text = "Zero: " + tare;
+
+        }
+
+        private void ReadSettings(Settings settings)
+        {
+            lower = settings.lower;
+            lowerud.Value = lower;
+
+            higher = settings.higher;
+            higherud.Value = higher;
+
+            offset = settings.cableoffset;
+            cableoffset.Value = offset;
+
+            sheavenumval = settings.sheavenumber;
+            sheavenumber.Text = sheavenumval.ToString();
+
+            circ = settings.sheavecirc;
+            sheavecirc.Value = circ;
+
+            maxcableval = settings.maxcable;
+            maxcable.Value = maxcableval;
+            this.progressBar1.Maximum = (int)maxcableval;
+            this.barmax.Text = maxcableval.ToString();
+
+            mode = settings.format;
+            switch (mode)
+            {
+                case 1:
+                    radio_str.Checked = true;
+                    break;
+                case 2:
+                    radio_mc.Checked = true;
+                    break;
+                default:
+                    radio_none.Checked = true;
+                    mode = 0;
+                    break;
+            }
+
+            tare = settings.zero;
+            this.label1.Text = "Zero: " + tare;
+
+        }
+
+        private void WriteSettings()
+        {
+            var settings = Properties.Settings.Default;
+
+            settings.lower = lower;
+            settings.higher = higher;
+            settings.cableoffset = offset;
+            settings.sheavenumber = sheavenumval;
+            settings.sheavecirc = circ;
+            settings.maxcable = maxcableval;
+            settings.format = mode;
+            settings.zero = tare;
+
+            settings.Save();
+        }
+
+        private void formClose(object sender, FormClosingEventArgs e)
+        {
+            //e.Cancel = true;
             //if (readport.IsOpen)
             //{
             //    readport.Close();
@@ -78,8 +214,10 @@ namespace serial_port_monitor
             //{
             //    writeport.Close();
             //}
-            Form2 portdialog = new Form2(this);
-            portdialog.Show();
+            //Form2 portdialog = new Form2(this);
+            //portdialog.Show();
+            WriteSettings();
+            //e.Cancel = false;
         }
 
         private void timer_Tick(object sender, EventArgs e)
@@ -160,10 +298,30 @@ namespace serial_port_monitor
                 int end = indata.IndexOf('\r');
                 string voldat = end != -1 ? indata.Substring(split + 1, end - (split + 1)) : indata.Substring(split+1);
 
+                try
+                {
+                    decimal.Parse(count);
+                    decimal.Parse(voldat);
+                }
+                catch (FormatException)
+                {
+                    Console.WriteLine("Unable to parse input");
+                }
+
+                decimal temp = decimal.Parse(count);
+                raw = temp;
+                outval = temp - tare;
+                voltage = decimal.Parse(voldat) * (((decimal)5) / 1023);
+                meters = (decimal)Math.Round((circ * outval / (decimal)39.37) + offset, 4);
+                feet = (decimal)Math.Round(meters * (decimal)3.281, 4);
+
+                    //string logline = String.Format("{0,-21} {1,-14} {2,-14}\n", DateTime.Now.ToString("s"), meters.ToString(), feet.ToString());
+                LogDat();
+
                 SetText1(count);
                 SetText2(count);
                 SetText3(voldat);
-                if (Single.Parse(count) != 0)
+                if (decimal.Parse(count) != 0)
                 {
                     SetText4("");
                 }
@@ -179,7 +337,43 @@ namespace serial_port_monitor
             }
         }
         
-        private void DataSendHandler(Single value)
+        private void LogDat()
+        {
+            if (!logging)
+            {
+                return;
+            }
+
+            logfi.Refresh();
+            Console.WriteLine(logfi.Length);
+            if (logfi.Length > 1000000)
+            {
+                LogStop();
+                LogStart();
+            }
+
+            string logmode;
+            switch (mode)
+            {
+                case 1:
+                    logmode = "STR";
+                    break;
+                case 2:
+                    logmode = "MC";
+                    break;
+                default:
+                    logmode = "NONE";
+                    break;
+            }
+            
+            string logline = String.Format("{0},{1},{2},{3},{4},{5},{6},{7},{8},{9},{10},{11},{12},{13}\n\n",
+                DateTime.Now.ToString("s"), meters.ToString(), feet.ToString(), raw.ToString(), outval.ToString(), voltage.ToString(),
+                offset.ToString(), logmode, sheavenumval.ToString(), circ.ToString(), maxcableval.ToString(), lower.ToString(), higher.ToString(), tare.ToString());
+            sw.Write(logline);
+            sw.Flush();
+        }
+
+        private void DataSendHandler(decimal value)
         {
             if (mode != 0 && writeport != null && writeport.IsOpen)
             {
@@ -200,14 +394,14 @@ namespace serial_port_monitor
             }
         }
 
-        private string strOut(Single value)
+        private string strOut(decimal value)
         {
             string f = String.Format("{0:+000#;-000#;+0000;}\r\n", value);
             Console.WriteLine(f);
             return f;
         }
 
-        private string mcOut(Single value)
+        private string mcOut(decimal value)
         {
             value = Math.Abs(value);
             string f = String.Format("L={0:0000.00}\r\n", value);
@@ -226,10 +420,10 @@ namespace serial_port_monitor
         private void SetText1(string text)
         {
 
-            //last = Single.Parse(text);
-            last = Single.Parse(text);
+            //raw = decimal.Parse(text);
+            raw = decimal.Parse(text);
 
-            Console.WriteLine("raw: " + last);
+            Console.WriteLine("raw: " + raw);
             // InvokeRequired required compares the thread ID of the
             // calling thread to the thread ID of the creating thread.
             // If these threads are different, it returns true.
@@ -240,9 +434,10 @@ namespace serial_port_monitor
             }
             else
             {
-                this.textBox1.Text = last.ToString();
+                this.textBox1.Text = raw.ToString();
             }
         }
+
 
         //processed count
         private void SetText2(string text)
@@ -255,8 +450,8 @@ namespace serial_port_monitor
             }
             else
             {
-                outval = Single.Parse(text) - tare + offset;
-                this.textBox2.Text = Math.Round(outval,2).ToString();
+                outval = decimal.Parse(text) - tare;
+                this.textBox2.Text = Math.Round(outval,4).ToString();
                 DataSendHandler(outval);
                 finalSet();
             }
@@ -265,9 +460,9 @@ namespace serial_port_monitor
         //voltage
         private void SetText3(string text)
         {
-            Single voltage = Single.Parse(text);
-            Console.WriteLine("voltage: " + voltage);
-            voltage *= (((Single)5) / 1023);
+            decimal temp = decimal.Parse(text);
+            Console.WriteLine("voltage: " + temp);
+            voltage = temp * (((decimal)5) / 1023);
 
             // InvokeRequired required compares the thread ID of the
             // calling thread to the thread ID of the creating thread.
@@ -300,33 +495,62 @@ namespace serial_port_monitor
         //meters
         private void SetText5()
         {
-            if (this.textBox5.InvokeRequired)
+            if (this.finalmeter.InvokeRequired)
             {
                 SetTextCallback5 d = new SetTextCallback5(SetText5);
                 this.Invoke(d, new object[] {  });
             }
             else
             {
-                meters = (Single)Math.Round(circ * outval / 39.37, 3);
-                this.textBox5.Text = Math.Round(circ*outval/39.37,3).ToString();
-                int barval = (int)(meters * 1000);
+                meters = (decimal)Math.Round((circ * outval / (decimal)39.37) + offset, 4);
+                feet = (decimal)Math.Round(meters * (decimal)3.281, 4);
+
+                SetText6();
+
+                this.finalmeter.Text = Math.Round((circ*outval/ (decimal)39.37)+offset,4).ToString();
+                int barval = (int)(meters);
                 if (barval >= 0 && barval <= this.progressBar1.Maximum)
                 this.progressBar1.Value = barval;
                 Console.WriteLine("val: " + barval);
+
+                if (meters <= lower+15 && meters >= lower-15)
+                {
+                    myTimer.Stop();
+                    label17.Text = "Approaching Lower Gate";
+                    label17.Show();
+                    alert.Play();
+                    
+                    myTimer.Start();
+                }
+                else if (meters <= higher && meters >= higher - 15)
+                {
+                    myTimer.Stop();
+                    label17.Text = "Approaching Higher Gate";
+                    label17.Show();
+                    alert.Play();
+                    
+                    myTimer.Start();
+                } else if (meters >= higher)
+                {
+                    myTimer.Stop();
+                    label17.Text = "Exceeded Higher Gate";
+                    label17.Show();
+                    alert.Play();
+                }
             }
         }
 
         //feet
         private void SetText6()
         {
-            if (this.textBox6.InvokeRequired)
+            if (this.finalfeet.InvokeRequired)
             {
                 SetTextCallback5 d = new SetTextCallback5(SetText6);
                 this.Invoke(d, new object[] { });
             }
             else
             {
-                this.textBox6.Text = Math.Round(circ * outval / 12, 3).ToString();
+                this.finalfeet.Text = Math.Round(meters * (decimal)3.281, 4).ToString();
             }
         }
 
@@ -382,18 +606,18 @@ namespace serial_port_monitor
         private void numericUpDown1_ValueChanged(object sender, EventArgs e)
         {
             NumericUpDown ud = (NumericUpDown)sender;
-            offset = (Single)ud.Value;
-            SetText1(last.ToString());
-            SetText2(last.ToString());
+            offset = (decimal)ud.Value;
+            SetText1(raw.ToString());
+            SetText2(raw.ToString());
         }
 
         //tare
         private void tare_Reset(object sender, EventArgs e)
         {
-            tare = last;
+            tare = raw;
             this.label1.Text = "Zero: " + tare;
-            SetText1(last.ToString());
-            SetText2(last.ToString());
+            SetText1(raw.ToString());
+            SetText2(raw.ToString());
             Console.WriteLine("RESET");
         }
 
@@ -404,11 +628,11 @@ namespace serial_port_monitor
             if (readport != null && readport.IsOpen)
             {
 
-                myTimer = new System.Windows.Forms.Timer();
-                myTimer.Tick += new EventHandler(TimerEventProcessor);
-                myTimer.Interval = 1000;
-                myTimer.Start();
-                //readport.Write("R\r\n");
+                //myTimer = new System.Windows.Forms.Timer();
+                //myTimer.Tick += new EventHandler(TimerEventProcessor);
+                //myTimer.Interval = 1000;
+                //myTimer.Start();
+                readport.Write("RRRRRRRRRR\r\n");
                 //readport.Write("R\r\n");
                 //readport.Write("R\r\n");
                 //readport.Write("R\r\n");
@@ -441,7 +665,7 @@ namespace serial_port_monitor
         {
             if (readport != null && readport.IsOpen)
             {
-                readport.Write("ZZZZ\r\n");
+                readport.Write("ZZZZZZZZZZ\r\n");
             }
         }
 
@@ -491,22 +715,24 @@ namespace serial_port_monitor
         private void numericUpDown2_ValueChanged(object sender, EventArgs e)
         {
             NumericUpDown ud = (NumericUpDown)sender;
-            circ = (Single)ud.Value;
+            circ = (decimal)ud.Value;
             finalSet();
         }
 
         private void finalSet()
         {
+            Console.WriteLine("FINAL SET");
             SetText5();
-            SetText6();
+            //SetText6();
         }
 
         private void numericUpDown3_ValueChanged(object sender, EventArgs e)
         {
             NumericUpDown ud = (NumericUpDown)sender;
             int val = (int)ud.Value;
-            this.progressBar1.Maximum = val * 1000;
-            this.progressBar1.Value = this.progressBar1.Value;
+            maxcableval = val;
+            this.progressBar1.Maximum = val;
+            //this.progressBar1.Value = this.progressBar1.Value;
             this.barmax.Text = (ud.Value).ToString();
         }
 
@@ -541,6 +767,154 @@ namespace serial_port_monitor
             if (ports.Contains(wriread))
             {
                 this.comboBox2.SelectedItem = wriread;
+            }
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void numericUpDown4_ValueChanged(object sender, EventArgs e)
+        {
+            NumericUpDown ud = (NumericUpDown)sender;
+            lower = (decimal)ud.Value;
+        }
+
+        private void numericUpDown5_ValueChanged(object sender, EventArgs e)
+        {
+            NumericUpDown ud = (NumericUpDown)sender;
+            higher = (decimal)ud.Value;
+        }
+
+        private void sheavenumber_TextChanged(object sender, EventArgs e)
+        {
+            sheavenumval = long.Parse(((TextBox)sender).Text);
+        }
+
+        private void save_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog saveFileDialog1 = new SaveFileDialog();
+            saveFileDialog1.Filter = "XML File|*.xml";
+            saveFileDialog1.Title = "Save Settings";
+            saveFileDialog1.ShowDialog();
+
+            Settings tosave = new Settings();
+            tosave.lower = lower;
+            tosave.higher = higher;
+            tosave.cableoffset = offset;
+            tosave.sheavecirc = circ;
+            tosave.zero = tare;
+            tosave.sheavenumber = sheavenumval;
+            tosave.maxcable = maxcableval;
+            tosave.format = mode;
+
+            XmlSerializer xs = new XmlSerializer(typeof(Settings));
+            using (FileStream fs = (FileStream)saveFileDialog1.OpenFile())
+            {
+                xs.Serialize(fs, tosave);
+            }
+        }
+
+
+        private void load_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.InitialDirectory = ".\\";
+            openFileDialog.Filter = "XML File|*.xml";
+            openFileDialog.RestoreDirectory = true;
+            openFileDialog.ShowDialog();
+
+            Settings settings;
+            XmlSerializer xs = new XmlSerializer(typeof(Settings));
+            if (openFileDialog.FileName != null && openFileDialog.FileName != "")
+            {
+                using (FileStream fs = (FileStream)openFileDialog.OpenFile())
+                {
+                    Console.WriteLine("FS: " + fs == null);
+                    settings = xs.Deserialize(fs) as Settings;
+                }
+
+                ReadSettings(settings);
+            }
+        }
+
+        public class Settings
+        {
+            public decimal lower;
+            public decimal higher;
+            public decimal cableoffset;
+            public decimal sheavecirc;
+            public decimal zero;
+            public long sheavenumber;
+            public long maxcable;
+            public int format;
+        }
+
+        private void logtick(object sender, EventArgs e)
+        {
+            LogDat();
+        }
+
+        private void logstart_Click(object sender, EventArgs e)
+        {
+            if (!logging)
+            {
+                LogStart();
+                logstart.Enabled = false;
+                logstop.Enabled = true;
+                Console.WriteLine("Logging started");
+            }
+        }
+
+        private void LogStart()
+        {
+            logging = true;
+            string logname = "log_" + DateTime.Now.ToString("s").Replace(':', '-') + ".txt";
+            Console.WriteLine(logname);
+            if (!File.Exists(logname))
+                File.Create(logname).Close(); // Create file
+
+            logfi = new FileInfo(logname);
+
+            sw = File.AppendText(logname);
+            string loghead = String.Format("{0},{1},{2},{3},{4},{5},{6},{7},{8},{9},{10},{11},{12},{13}\n\n",
+                "Time", "Meters", "Feet", "Raw", "Count", "Volt", "Cable Offset", "Output Format", "Sheave Block Number",
+                "Sheave Circumference", "Max Cable Length", "Lower Gate", "Higher Gate", "Zero");
+            sw.Write(loghead);
+            sw.Flush();
+
+            LogDat();
+            logtimer = new System.Windows.Forms.Timer();
+            logtimer.Tick += new EventHandler(logtick);
+            logtimer.Interval = (int)(loginterval.Value * 60000); // in miliseconds
+            logtimer.Start();
+        }
+
+        private void logstop_Click(object sender, EventArgs e)
+        {
+            if (logging)
+            {
+                LogStop();
+                logstart.Enabled = true;
+                logstop.Enabled = false;
+                Console.WriteLine("Logging Stopped");
+            }
+        }
+
+        private void LogStop()
+        {
+            sw.Dispose();
+            logtimer.Stop();
+            logging = false;
+        }
+
+        private void numericUpDown1_ValueChanged_1(object sender, EventArgs e)
+        {
+            if (logtimer != null)
+            {
+                LogDat();
+                logtimer.Interval = (int)(((NumericUpDown)sender).Value*60000);
             }
         }
     }
