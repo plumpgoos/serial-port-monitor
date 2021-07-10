@@ -271,24 +271,16 @@ namespace serial_port_monitor
             string indata = sp.ReadLine();
 
             Console.WriteLine(indata);
+            byte[] bytes = Encoding.UTF8.GetBytes(indata);
+            string hexString = BitConverter.ToString(bytes);
+            hexString = hexString.Replace("-", "");
+            Console.WriteLine(hexString);
 
-            
+            if (indata.Equals("\r")) {
+                Console.WriteLine("Empty input, skipping");
+                return;
+            }
 
-            //if (indata[0] == 'V')
-            //{
-            //    volt = true;
-            //}
-            //else if (volt)
-            //{
-            //    Console.WriteLine(indata);
-            //    SetText3(indata);
-            //    volt = false;
-            //}
-            //else
-            //{
-            //    SetText1(indata);
-            //    SetText2(indata);
-            //}
 
             int split = indata.IndexOf('V');
             if (split != -1)
@@ -305,7 +297,8 @@ namespace serial_port_monitor
                 }
                 catch (FormatException)
                 {
-                    Console.WriteLine("Unable to parse input");
+                    Console.WriteLine("Unable to parse input: " + count + " " + voldat);
+                    return;
                 }
 
                 decimal temp = decimal.Parse(count);
@@ -665,7 +658,9 @@ namespace serial_port_monitor
         {
             if (readport != null && readport.IsOpen)
             {
+                Console.WriteLine("RESET COUNT1");
                 readport.Write("ZZZZZZZZZZ\r\n");
+                Console.WriteLine("RESET COUNT2");
             }
         }
 

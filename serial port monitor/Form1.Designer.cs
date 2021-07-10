@@ -33,7 +33,6 @@ namespace serial_port_monitor
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.label3 = new System.Windows.Forms.Label();
             this.cableoffset = new System.Windows.Forms.NumericUpDown();
-            this.splitContainer4 = new System.Windows.Forms.SplitContainer();
             this.higherud = new System.Windows.Forms.NumericUpDown();
             this.lowerud = new System.Windows.Forms.NumericUpDown();
             this.label16 = new System.Windows.Forms.Label();
@@ -50,27 +49,26 @@ namespace serial_port_monitor
             this.label7 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
-            this.button3 = new System.Windows.Forms.Button();
             this.label8 = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.loginterval = new System.Windows.Forms.NumericUpDown();
-            this.logstop = new System.Windows.Forms.Button();
-            this.logstart = new System.Windows.Forms.Button();
-            this.load = new System.Windows.Forms.Button();
-            this.save = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
-            this.connect2 = new System.Windows.Forms.Button();
-            this.connect1 = new System.Windows.Forms.Button();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.radio_none = new System.Windows.Forms.RadioButton();
             this.radio_mc = new System.Windows.Forms.RadioButton();
             this.radio_str = new System.Windows.Forms.RadioButton();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.connect1 = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
+            this.connect2 = new System.Windows.Forms.Button();
+            this.save = new System.Windows.Forms.Button();
+            this.load = new System.Windows.Forms.Button();
+            this.logstart = new System.Windows.Forms.Button();
+            this.logstop = new System.Windows.Forms.Button();
+            this.loginterval = new System.Windows.Forms.NumericUpDown();
             this.label17 = new System.Windows.Forms.Label();
             this.barmax = new System.Windows.Forms.Label();
             this.finalfeet = new System.Windows.Forms.TextBox();
@@ -82,6 +80,7 @@ namespace serial_port_monitor
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.splitContainer3 = new System.Windows.Forms.SplitContainer();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -91,19 +90,19 @@ namespace serial_port_monitor
             this.splitContainer2.Panel2.SuspendLayout();
             this.splitContainer2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.cableoffset)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer4)).BeginInit();
-            this.splitContainer4.Panel1.SuspendLayout();
-            this.splitContainer4.Panel2.SuspendLayout();
-            this.splitContainer4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.higherud)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lowerud)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sheavecirc)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.maxcable)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.loginterval)).BeginInit();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.loginterval)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer3)).BeginInit();
+            this.splitContainer3.Panel1.SuspendLayout();
+            this.splitContainer3.Panel2.SuspendLayout();
+            this.splitContainer3.SuspendLayout();
             this.SuspendLayout();
             // 
             // splitContainer1
@@ -132,8 +131,8 @@ namespace serial_port_monitor
             this.splitContainer1.Panel2.Controls.Add(this.logstart);
             this.splitContainer1.Panel2.Controls.Add(this.logstop);
             this.splitContainer1.Panel2.Controls.Add(this.loginterval);
-            this.splitContainer1.Size = new System.Drawing.Size(842, 656);
-            this.splitContainer1.SplitterDistance = 309;
+            this.splitContainer1.Size = new System.Drawing.Size(946, 467);
+            this.splitContainer1.SplitterDistance = 270;
             this.splitContainer1.TabIndex = 0;
             // 
             // splitContainer2
@@ -153,15 +152,24 @@ namespace serial_port_monitor
             // splitContainer2.Panel2
             // 
             this.splitContainer2.Panel2.BackColor = System.Drawing.SystemColors.Window;
-            this.splitContainer2.Panel2.Controls.Add(this.splitContainer4);
-            this.splitContainer2.Size = new System.Drawing.Size(309, 656);
-            this.splitContainer2.SplitterDistance = 132;
+            this.splitContainer2.Panel2.Controls.Add(this.label13);
+            this.splitContainer2.Panel2.Controls.Add(this.label7);
+            this.splitContainer2.Panel2.Controls.Add(this.sheavenumber);
+            this.splitContainer2.Panel2.Controls.Add(this.maxcable);
+            this.splitContainer2.Panel2.Controls.Add(this.textBox3);
+            this.splitContainer2.Panel2.Controls.Add(this.label12);
+            this.splitContainer2.Panel2.Controls.Add(this.label15);
+            this.splitContainer2.Panel2.Controls.Add(this.label16);
+            this.splitContainer2.Panel2.Controls.Add(this.lowerud);
+            this.splitContainer2.Panel2.Controls.Add(this.higherud);
+            this.splitContainer2.Size = new System.Drawing.Size(270, 467);
+            this.splitContainer2.SplitterDistance = 70;
             this.splitContainer2.TabIndex = 0;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(76, 21);
+            this.label3.Location = new System.Drawing.Point(79, 14);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(112, 13);
             this.label3.TabIndex = 1;
@@ -171,7 +179,7 @@ namespace serial_port_monitor
             // cableoffset
             // 
             this.cableoffset.DecimalPlaces = 2;
-            this.cableoffset.Location = new System.Drawing.Point(73, 37);
+            this.cableoffset.Location = new System.Drawing.Point(75, 30);
             this.cableoffset.Maximum = new decimal(new int[] {
             99999,
             0,
@@ -187,47 +195,9 @@ namespace serial_port_monitor
             this.cableoffset.TabIndex = 1;
             this.cableoffset.ValueChanged += new System.EventHandler(this.numericUpDown1_ValueChanged);
             // 
-            // splitContainer4
-            // 
-            this.splitContainer4.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.splitContainer4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer4.Location = new System.Drawing.Point(0, 0);
-            this.splitContainer4.Name = "splitContainer4";
-            this.splitContainer4.Orientation = System.Windows.Forms.Orientation.Horizontal;
-            // 
-            // splitContainer4.Panel1
-            // 
-            this.splitContainer4.Panel1.Controls.Add(this.higherud);
-            this.splitContainer4.Panel1.Controls.Add(this.lowerud);
-            this.splitContainer4.Panel1.Controls.Add(this.label16);
-            this.splitContainer4.Panel1.Controls.Add(this.label15);
-            this.splitContainer4.Panel1.Controls.Add(this.sheavecirc);
-            this.splitContainer4.Panel1.Controls.Add(this.textBox1);
-            this.splitContainer4.Panel1.Controls.Add(this.label2);
-            this.splitContainer4.Panel1.Controls.Add(this.label9);
-            this.splitContainer4.Panel1.Controls.Add(this.label12);
-            this.splitContainer4.Panel1.Controls.Add(this.textBox2);
-            this.splitContainer4.Panel1.Controls.Add(this.textBox3);
-            this.splitContainer4.Panel1.Controls.Add(this.maxcable);
-            this.splitContainer4.Panel1.Controls.Add(this.sheavenumber);
-            this.splitContainer4.Panel1.Controls.Add(this.label7);
-            this.splitContainer4.Panel1.Controls.Add(this.label4);
-            this.splitContainer4.Panel1.Controls.Add(this.label13);
-            // 
-            // splitContainer4.Panel2
-            // 
-            this.splitContainer4.Panel2.Controls.Add(this.button3);
-            this.splitContainer4.Panel2.Controls.Add(this.label8);
-            this.splitContainer4.Panel2.Controls.Add(this.button2);
-            this.splitContainer4.Panel2.Controls.Add(this.button1);
-            this.splitContainer4.Panel2.Controls.Add(this.label1);
-            this.splitContainer4.Size = new System.Drawing.Size(309, 520);
-            this.splitContainer4.SplitterDistance = 350;
-            this.splitContainer4.TabIndex = 9;
-            // 
             // higherud
             // 
-            this.higherud.Location = new System.Drawing.Point(136, 266);
+            this.higherud.Location = new System.Drawing.Point(136, 168);
             this.higherud.Maximum = new decimal(new int[] {
             1000000,
             0,
@@ -240,7 +210,7 @@ namespace serial_port_monitor
             // 
             // lowerud
             // 
-            this.lowerud.Location = new System.Drawing.Point(24, 266);
+            this.lowerud.Location = new System.Drawing.Point(24, 168);
             this.lowerud.Maximum = new decimal(new int[] {
             1000000,
             0,
@@ -254,7 +224,7 @@ namespace serial_port_monitor
             // label16
             // 
             this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(159, 251);
+            this.label16.Location = new System.Drawing.Point(159, 153);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(64, 13);
             this.label16.TabIndex = 12;
@@ -263,7 +233,7 @@ namespace serial_port_monitor
             // label15
             // 
             this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(44, 251);
+            this.label15.Location = new System.Drawing.Point(44, 153);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(62, 13);
             this.label15.TabIndex = 11;
@@ -272,7 +242,7 @@ namespace serial_port_monitor
             // sheavecirc
             // 
             this.sheavecirc.DecimalPlaces = 2;
-            this.sheavecirc.Location = new System.Drawing.Point(24, 80);
+            this.sheavecirc.Location = new System.Drawing.Point(280, 35);
             this.sheavecirc.Name = "sheavecirc";
             this.sheavecirc.Size = new System.Drawing.Size(224, 20);
             this.sheavecirc.TabIndex = 4;
@@ -281,7 +251,7 @@ namespace serial_port_monitor
             // textBox1
             // 
             this.textBox1.BackColor = System.Drawing.SystemColors.Window;
-            this.textBox1.Location = new System.Drawing.Point(24, 178);
+            this.textBox1.Location = new System.Drawing.Point(51, 35);
             this.textBox1.Name = "textBox1";
             this.textBox1.ReadOnly = true;
             this.textBox1.Size = new System.Drawing.Size(105, 20);
@@ -291,7 +261,7 @@ namespace serial_port_monitor
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(14, 164);
+            this.label2.Location = new System.Drawing.Point(35, 21);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(121, 13);
             this.label2.TabIndex = 1;
@@ -300,7 +270,7 @@ namespace serial_port_monitor
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(52, 64);
+            this.label9.Location = new System.Drawing.Point(308, 19);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(162, 13);
             this.label9.TabIndex = 1;
@@ -309,7 +279,7 @@ namespace serial_port_monitor
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(74, 9);
+            this.label12.Location = new System.Drawing.Point(79, 8);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(114, 13);
             this.label12.TabIndex = 1;
@@ -318,7 +288,7 @@ namespace serial_port_monitor
             // textBox2
             // 
             this.textBox2.BackColor = System.Drawing.Color.Gray;
-            this.textBox2.Location = new System.Drawing.Point(136, 178);
+            this.textBox2.Location = new System.Drawing.Point(163, 35);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(111, 20);
             this.textBox2.TabIndex = 0;
@@ -327,16 +297,16 @@ namespace serial_port_monitor
             // textBox3
             // 
             this.textBox3.BackColor = System.Drawing.Color.Gray;
-            this.textBox3.Location = new System.Drawing.Point(23, 222);
+            this.textBox3.Location = new System.Drawing.Point(23, 124);
             this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(106, 20);
+            this.textBox3.Size = new System.Drawing.Size(224, 20);
             this.textBox3.TabIndex = 2;
             this.textBox3.Text = "0";
             // 
             // maxcable
             // 
             this.maxcable.DecimalPlaces = 2;
-            this.maxcable.Location = new System.Drawing.Point(23, 135);
+            this.maxcable.Location = new System.Drawing.Point(23, 74);
             this.maxcable.Maximum = new decimal(new int[] {
             999999,
             0,
@@ -358,7 +328,7 @@ namespace serial_port_monitor
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(20, 208);
+            this.label7.Location = new System.Drawing.Point(79, 108);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(109, 13);
             this.label7.TabIndex = 1;
@@ -367,7 +337,7 @@ namespace serial_port_monitor
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(171, 164);
+            this.label4.Location = new System.Drawing.Point(198, 21);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(35, 13);
             this.label4.TabIndex = 1;
@@ -376,27 +346,16 @@ namespace serial_port_monitor
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(50, 119);
+            this.label13.Location = new System.Drawing.Point(50, 58);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(164, 13);
             this.label13.TabIndex = 1;
             this.label13.Text = "Maximum Cable Length In Meters";
             // 
-            // button3
-            // 
-            this.button3.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.button3.Location = new System.Drawing.Point(61, 88);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(162, 23);
-            this.button3.TabIndex = 4;
-            this.button3.Text = "Reset Count To 0 At Sheave";
-            this.button3.UseVisualStyleBackColor = false;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
-            // 
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(93, 136);
+            this.label8.Location = new System.Drawing.Point(538, 62);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(35, 13);
             this.label8.TabIndex = 5;
@@ -405,9 +364,9 @@ namespace serial_port_monitor
             // button2
             // 
             this.button2.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.button2.Location = new System.Drawing.Point(61, 59);
+            this.button2.Location = new System.Drawing.Point(753, 35);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(163, 23);
+            this.button2.Size = new System.Drawing.Size(167, 20);
             this.button2.TabIndex = 3;
             this.button2.Text = "Hardware Reset At Sheave";
             this.button2.UseVisualStyleBackColor = false;
@@ -416,7 +375,7 @@ namespace serial_port_monitor
             // button1
             // 
             this.button1.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.button1.Location = new System.Drawing.Point(62, 33);
+            this.button1.Location = new System.Drawing.Point(586, 35);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(161, 20);
             this.button1.TabIndex = 1;
@@ -427,17 +386,172 @@ namespace serial_port_monitor
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(117, 17);
+            this.label1.Location = new System.Drawing.Point(645, 19);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(41, 13);
             this.label1.TabIndex = 2;
             this.label1.Text = "Zero: 0";
             this.label1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
+            // comboBox1
+            // 
+            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(34, 188);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(121, 21);
+            this.comboBox1.TabIndex = 2;
+            this.comboBox1.SelectionChangeCommitted += new System.EventHandler(this.comboBox1_SelectionChangeCommitted);
+            // 
+            // comboBox2
+            // 
+            this.comboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox2.FormattingEnabled = true;
+            this.comboBox2.Location = new System.Drawing.Point(34, 262);
+            this.comboBox2.Name = "comboBox2";
+            this.comboBox2.Size = new System.Drawing.Size(121, 21);
+            this.comboBox2.TabIndex = 2;
+            this.comboBox2.SelectionChangeCommitted += new System.EventHandler(this.comboBox2_SelectionChangeCommitted);
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.radio_none);
+            this.groupBox1.Controls.Add(this.radio_mc);
+            this.groupBox1.Controls.Add(this.radio_str);
+            this.groupBox1.Location = new System.Drawing.Point(34, 29);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(200, 118);
+            this.groupBox1.TabIndex = 6;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Output Format";
+            // 
+            // radio_none
+            // 
+            this.radio_none.AutoSize = true;
+            this.radio_none.Checked = true;
+            this.radio_none.Location = new System.Drawing.Point(16, 19);
+            this.radio_none.Name = "radio_none";
+            this.radio_none.Size = new System.Drawing.Size(51, 17);
+            this.radio_none.TabIndex = 3;
+            this.radio_none.TabStop = true;
+            this.radio_none.Text = "None";
+            this.radio_none.UseVisualStyleBackColor = true;
+            this.radio_none.CheckedChanged += new System.EventHandler(this.radioButtons_CheckedChanged);
+            // 
+            // radio_mc
+            // 
+            this.radio_mc.AutoSize = true;
+            this.radio_mc.Location = new System.Drawing.Point(16, 65);
+            this.radio_mc.Name = "radio_mc";
+            this.radio_mc.Size = new System.Drawing.Size(75, 17);
+            this.radio_mc.TabIndex = 5;
+            this.radio_mc.Text = "Mc Format";
+            this.radio_mc.UseVisualStyleBackColor = true;
+            this.radio_mc.CheckedChanged += new System.EventHandler(this.radioButtons_CheckedChanged);
+            // 
+            // radio_str
+            // 
+            this.radio_str.AutoSize = true;
+            this.radio_str.Location = new System.Drawing.Point(16, 42);
+            this.radio_str.Name = "radio_str";
+            this.radio_str.Size = new System.Drawing.Size(82, 17);
+            this.radio_str.TabIndex = 4;
+            this.radio_str.Text = "STR Format";
+            this.radio_str.UseVisualStyleBackColor = true;
+            this.radio_str.CheckedChanged += new System.EventHandler(this.radioButtons_CheckedChanged);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(31, 172);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(55, 13);
+            this.label5.TabIndex = 7;
+            this.label5.Text = "Read Port";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(31, 239);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(54, 13);
+            this.label6.TabIndex = 7;
+            this.label6.Text = "Write Port";
+            // 
+            // connect1
+            // 
+            this.connect1.Location = new System.Drawing.Point(164, 187);
+            this.connect1.Name = "connect1";
+            this.connect1.Size = new System.Drawing.Size(75, 23);
+            this.connect1.TabIndex = 8;
+            this.connect1.Text = "Connect";
+            this.connect1.UseVisualStyleBackColor = true;
+            this.connect1.Click += new System.EventHandler(this.connect1_Click);
+            // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(263, 187);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(75, 23);
+            this.button4.TabIndex = 9;
+            this.button4.Text = "Refresh";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
+            // 
+            // connect2
+            // 
+            this.connect2.Location = new System.Drawing.Point(164, 261);
+            this.connect2.Name = "connect2";
+            this.connect2.Size = new System.Drawing.Size(75, 23);
+            this.connect2.TabIndex = 8;
+            this.connect2.Text = "Connect";
+            this.connect2.UseVisualStyleBackColor = true;
+            this.connect2.Click += new System.EventHandler(this.connect2_Click);
+            // 
+            // save
+            // 
+            this.save.Location = new System.Drawing.Point(263, 71);
+            this.save.Name = "save";
+            this.save.Size = new System.Drawing.Size(75, 23);
+            this.save.TabIndex = 10;
+            this.save.Text = "Save Settings";
+            this.save.UseVisualStyleBackColor = true;
+            this.save.Click += new System.EventHandler(this.save_Click);
+            // 
+            // load
+            // 
+            this.load.Location = new System.Drawing.Point(263, 42);
+            this.load.Name = "load";
+            this.load.Size = new System.Drawing.Size(75, 23);
+            this.load.TabIndex = 11;
+            this.load.Text = "Load";
+            this.load.UseVisualStyleBackColor = true;
+            this.load.Click += new System.EventHandler(this.load_Click);
+            // 
+            // logstart
+            // 
+            this.logstart.Location = new System.Drawing.Point(33, 316);
+            this.logstart.Name = "logstart";
+            this.logstart.Size = new System.Drawing.Size(113, 23);
+            this.logstart.TabIndex = 12;
+            this.logstart.Text = "Start Logging";
+            this.logstart.UseVisualStyleBackColor = true;
+            this.logstart.Click += new System.EventHandler(this.logstart_Click);
+            // 
+            // logstop
+            // 
+            this.logstop.Location = new System.Drawing.Point(152, 316);
+            this.logstop.Name = "logstop";
+            this.logstop.Size = new System.Drawing.Size(87, 23);
+            this.logstop.TabIndex = 13;
+            this.logstop.Text = "Stop Logging";
+            this.logstop.UseVisualStyleBackColor = true;
+            this.logstop.Click += new System.EventHandler(this.logstop_Click);
+            // 
             // loginterval
             // 
             this.loginterval.DecimalPlaces = 3;
-            this.loginterval.Location = new System.Drawing.Point(244, 340);
+            this.loginterval.Location = new System.Drawing.Point(244, 318);
             this.loginterval.Maximum = new decimal(new int[] {
             1000,
             0,
@@ -458,165 +572,10 @@ namespace serial_port_monitor
             0});
             this.loginterval.ValueChanged += new System.EventHandler(this.numericUpDown1_ValueChanged_1);
             // 
-            // logstop
-            // 
-            this.logstop.Location = new System.Drawing.Point(152, 338);
-            this.logstop.Name = "logstop";
-            this.logstop.Size = new System.Drawing.Size(87, 23);
-            this.logstop.TabIndex = 13;
-            this.logstop.Text = "Stop Logging";
-            this.logstop.UseVisualStyleBackColor = true;
-            this.logstop.Click += new System.EventHandler(this.logstop_Click);
-            // 
-            // logstart
-            // 
-            this.logstart.Location = new System.Drawing.Point(33, 338);
-            this.logstart.Name = "logstart";
-            this.logstart.Size = new System.Drawing.Size(113, 23);
-            this.logstart.TabIndex = 12;
-            this.logstart.Text = "Start Logging";
-            this.logstart.UseVisualStyleBackColor = true;
-            this.logstart.Click += new System.EventHandler(this.logstart_Click);
-            // 
-            // load
-            // 
-            this.load.Location = new System.Drawing.Point(305, 94);
-            this.load.Name = "load";
-            this.load.Size = new System.Drawing.Size(75, 23);
-            this.load.TabIndex = 11;
-            this.load.Text = "Load";
-            this.load.UseVisualStyleBackColor = true;
-            this.load.Click += new System.EventHandler(this.load_Click);
-            // 
-            // save
-            // 
-            this.save.Location = new System.Drawing.Point(387, 94);
-            this.save.Name = "save";
-            this.save.Size = new System.Drawing.Size(75, 23);
-            this.save.TabIndex = 10;
-            this.save.Text = "Save Settings";
-            this.save.UseVisualStyleBackColor = true;
-            this.save.Click += new System.EventHandler(this.save_Click);
-            // 
-            // button4
-            // 
-            this.button4.Location = new System.Drawing.Point(263, 209);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(75, 23);
-            this.button4.TabIndex = 9;
-            this.button4.Text = "Refresh";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
-            // 
-            // connect2
-            // 
-            this.connect2.Location = new System.Drawing.Point(164, 283);
-            this.connect2.Name = "connect2";
-            this.connect2.Size = new System.Drawing.Size(75, 23);
-            this.connect2.TabIndex = 8;
-            this.connect2.Text = "Connect";
-            this.connect2.UseVisualStyleBackColor = true;
-            this.connect2.Click += new System.EventHandler(this.connect2_Click);
-            // 
-            // connect1
-            // 
-            this.connect1.Location = new System.Drawing.Point(164, 209);
-            this.connect1.Name = "connect1";
-            this.connect1.Size = new System.Drawing.Size(75, 23);
-            this.connect1.TabIndex = 8;
-            this.connect1.Text = "Connect";
-            this.connect1.UseVisualStyleBackColor = true;
-            this.connect1.Click += new System.EventHandler(this.connect1_Click);
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(31, 261);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(54, 13);
-            this.label6.TabIndex = 7;
-            this.label6.Text = "Write Port";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(31, 194);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(55, 13);
-            this.label5.TabIndex = 7;
-            this.label5.Text = "Read Port";
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.radio_none);
-            this.groupBox1.Controls.Add(this.radio_mc);
-            this.groupBox1.Controls.Add(this.radio_str);
-            this.groupBox1.Location = new System.Drawing.Point(34, 29);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(200, 118);
-            this.groupBox1.TabIndex = 6;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Output Format";
-            // 
-            // radio_none
-            // 
-            this.radio_none.AutoSize = true;
-            this.radio_none.Checked = true;
-            this.radio_none.Location = new System.Drawing.Point(16, 19);
-            this.radio_none.Name = "radio_none";
-            this.radio_none.Size = new System.Drawing.Size(34, 11);
-            this.radio_none.TabIndex = 3;
-            this.radio_none.TabStop = true;
-            this.radio_none.Text = "None";
-            this.radio_none.UseVisualStyleBackColor = true;
-            this.radio_none.CheckedChanged += new System.EventHandler(this.radioButtons_CheckedChanged);
-            // 
-            // radio_mc
-            // 
-            this.radio_mc.AutoSize = true;
-            this.radio_mc.Location = new System.Drawing.Point(16, 65);
-            this.radio_mc.Name = "radio_mc";
-            this.radio_mc.Size = new System.Drawing.Size(50, 11);
-            this.radio_mc.TabIndex = 5;
-            this.radio_mc.Text = "Mc Format";
-            this.radio_mc.UseVisualStyleBackColor = true;
-            this.radio_mc.CheckedChanged += new System.EventHandler(this.radioButtons_CheckedChanged);
-            // 
-            // radio_str
-            // 
-            this.radio_str.AutoSize = true;
-            this.radio_str.Location = new System.Drawing.Point(16, 42);
-            this.radio_str.Name = "radio_str";
-            this.radio_str.Size = new System.Drawing.Size(55, 11);
-            this.radio_str.TabIndex = 4;
-            this.radio_str.Text = "STR Format";
-            this.radio_str.UseVisualStyleBackColor = true;
-            this.radio_str.CheckedChanged += new System.EventHandler(this.radioButtons_CheckedChanged);
-            // 
-            // comboBox2
-            // 
-            this.comboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(34, 284);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(121, 21);
-            this.comboBox2.TabIndex = 2;
-            this.comboBox2.SelectionChangeCommitted += new System.EventHandler(this.comboBox2_SelectionChangeCommitted);
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(34, 210);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 21);
-            this.comboBox1.TabIndex = 2;
-            this.comboBox1.SelectionChangeCommitted += new System.EventHandler(this.comboBox1_SelectionChangeCommitted);
-            // 
             // label17
             // 
             this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(371, 607);
+            this.label17.Location = new System.Drawing.Point(10, 454);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(0, 13);
             this.label17.TabIndex = 6;
@@ -625,7 +584,7 @@ namespace serial_port_monitor
             // 
             this.barmax.AutoSize = true;
             this.barmax.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.barmax.Location = new System.Drawing.Point(701, 103);
+            this.barmax.Location = new System.Drawing.Point(765, 65);
             this.barmax.Name = "barmax";
             this.barmax.Size = new System.Drawing.Size(16, 17);
             this.barmax.TabIndex = 9;
@@ -635,7 +594,7 @@ namespace serial_port_monitor
             // 
             this.finalfeet.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
             this.finalfeet.Font = new System.Drawing.Font("Microsoft Sans Serif", 96F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.finalfeet.Location = new System.Drawing.Point(137, 413);
+            this.finalfeet.Location = new System.Drawing.Point(201, 309);
             this.finalfeet.Name = "finalfeet";
             this.finalfeet.ReadOnly = true;
             this.finalfeet.Size = new System.Drawing.Size(541, 152);
@@ -646,7 +605,7 @@ namespace serial_port_monitor
             // 
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(91, 103);
+            this.label14.Location = new System.Drawing.Point(155, 66);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(16, 17);
             this.label14.TabIndex = 9;
@@ -656,7 +615,7 @@ namespace serial_port_monitor
             // 
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(273, 373);
+            this.label11.Location = new System.Drawing.Point(337, 271);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(264, 31);
             this.label11.TabIndex = 1;
@@ -666,7 +625,7 @@ namespace serial_port_monitor
             // 
             this.finalmeter.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
             this.finalmeter.Font = new System.Drawing.Font("Microsoft Sans Serif", 96F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.finalmeter.Location = new System.Drawing.Point(137, 173);
+            this.finalmeter.Location = new System.Drawing.Point(201, 114);
             this.finalmeter.Name = "finalmeter";
             this.finalmeter.ReadOnly = true;
             this.finalmeter.Size = new System.Drawing.Size(541, 152);
@@ -677,7 +636,7 @@ namespace serial_port_monitor
             // 
             this.progressBar1.BackColor = System.Drawing.SystemColors.Control;
             this.progressBar1.ForeColor = System.Drawing.Color.Red;
-            this.progressBar1.Location = new System.Drawing.Point(94, 28);
+            this.progressBar1.Location = new System.Drawing.Point(158, 14);
             this.progressBar1.Name = "progressBar1";
             this.progressBar1.Size = new System.Drawing.Size(622, 49);
             this.progressBar1.Step = 1;
@@ -688,7 +647,7 @@ namespace serial_port_monitor
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(265, 131);
+            this.label10.Location = new System.Drawing.Point(329, 77);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(294, 31);
             this.label10.TabIndex = 1;
@@ -701,10 +660,10 @@ namespace serial_port_monitor
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
-            this.tabControl1.Location = new System.Drawing.Point(0, 0);
+            this.tabControl1.Location = new System.Drawing.Point(3, 3);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(857, 689);
+            this.tabControl1.Size = new System.Drawing.Size(960, 499);
             this.tabControl1.TabIndex = 1;
             // 
             // tabPage1
@@ -713,9 +672,9 @@ namespace serial_port_monitor
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(848, 662);
+            this.tabPage1.Size = new System.Drawing.Size(952, 473);
             this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "Settings";
+            this.tabPage1.Text = "Setup";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
             // tabPage2
@@ -731,17 +690,43 @@ namespace serial_port_monitor
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(849, 663);
+            this.tabPage2.Size = new System.Drawing.Size(952, 473);
             this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "Output";
+            this.tabPage2.Text = "Data View";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // splitContainer3
+            // 
+            this.splitContainer3.Location = new System.Drawing.Point(1, 1);
+            this.splitContainer3.Name = "splitContainer3";
+            this.splitContainer3.Orientation = System.Windows.Forms.Orientation.Horizontal;
+            // 
+            // splitContainer3.Panel1
+            // 
+            this.splitContainer3.Panel1.Controls.Add(this.label1);
+            this.splitContainer3.Panel1.Controls.Add(this.button1);
+            this.splitContainer3.Panel1.Controls.Add(this.button2);
+            this.splitContainer3.Panel1.Controls.Add(this.label8);
+            this.splitContainer3.Panel1.Controls.Add(this.sheavecirc);
+            this.splitContainer3.Panel1.Controls.Add(this.label9);
+            this.splitContainer3.Panel1.Controls.Add(this.textBox2);
+            this.splitContainer3.Panel1.Controls.Add(this.label4);
+            this.splitContainer3.Panel1.Controls.Add(this.label2);
+            this.splitContainer3.Panel1.Controls.Add(this.textBox1);
+            // 
+            // splitContainer3.Panel2
+            // 
+            this.splitContainer3.Panel2.Controls.Add(this.tabControl1);
+            this.splitContainer3.Size = new System.Drawing.Size(966, 590);
+            this.splitContainer3.SplitterDistance = 84;
+            this.splitContainer3.TabIndex = 2;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(855, 686);
-            this.Controls.Add(this.tabControl1);
+            this.ClientSize = new System.Drawing.Size(968, 596);
+            this.Controls.Add(this.splitContainer3);
             this.Name = "Form1";
             this.Text = "Form1";
             this.splitContainer1.Panel1.ResumeLayout(false);
@@ -752,26 +737,26 @@ namespace serial_port_monitor
             this.splitContainer2.Panel1.ResumeLayout(false);
             this.splitContainer2.Panel1.PerformLayout();
             this.splitContainer2.Panel2.ResumeLayout(false);
+            this.splitContainer2.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
             this.splitContainer2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.cableoffset)).EndInit();
-            this.splitContainer4.Panel1.ResumeLayout(false);
-            this.splitContainer4.Panel1.PerformLayout();
-            this.splitContainer4.Panel2.ResumeLayout(false);
-            this.splitContainer4.Panel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer4)).EndInit();
-            this.splitContainer4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.higherud)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lowerud)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.sheavecirc)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.maxcable)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.loginterval)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.loginterval)).EndInit();
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
+            this.splitContainer3.Panel1.ResumeLayout(false);
+            this.splitContainer3.Panel1.PerformLayout();
+            this.splitContainer3.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer3)).EndInit();
+            this.splitContainer3.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -799,7 +784,6 @@ namespace serial_port_monitor
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Button connect2;
         private System.Windows.Forms.Button connect1;
@@ -817,7 +801,6 @@ namespace serial_port_monitor
         private System.Windows.Forms.Label barmax;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.SplitContainer splitContainer4;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.NumericUpDown higherud;
         private System.Windows.Forms.NumericUpDown lowerud;
@@ -831,6 +814,7 @@ namespace serial_port_monitor
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.SplitContainer splitContainer3;
     }
 }
 
