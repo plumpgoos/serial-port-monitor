@@ -30,29 +30,19 @@ namespace serial_port_monitor
         private void InitializeComponent()
         {
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.label3 = new System.Windows.Forms.Label();
             this.cableoffset = new System.Windows.Forms.NumericUpDown();
-            this.higherud = new System.Windows.Forms.NumericUpDown();
-            this.lowerud = new System.Windows.Forms.NumericUpDown();
-            this.label16 = new System.Windows.Forms.Label();
-            this.label15 = new System.Windows.Forms.Label();
-            this.sheavecirc = new System.Windows.Forms.NumericUpDown();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.maxcable = new System.Windows.Forms.NumericUpDown();
-            this.sheavenumber = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.sheavenumber = new System.Windows.Forms.TextBox();
+            this.maxcable = new System.Windows.Forms.NumericUpDown();
+            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
+            this.lowerud = new System.Windows.Forms.NumericUpDown();
+            this.higherud = new System.Windows.Forms.NumericUpDown();
+            this.label18 = new System.Windows.Forms.Label();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -69,6 +59,16 @@ namespace serial_port_monitor
             this.logstart = new System.Windows.Forms.Button();
             this.logstop = new System.Windows.Forms.Button();
             this.loginterval = new System.Windows.Forms.NumericUpDown();
+            this.sheavecirc = new System.Windows.Forms.NumericUpDown();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
             this.barmax = new System.Windows.Forms.Label();
             this.finalfeet = new System.Windows.Forms.TextBox();
@@ -81,21 +81,23 @@ namespace serial_port_monitor
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.splitContainer3 = new System.Windows.Forms.SplitContainer();
+            this.eorReset = new System.Windows.Forms.Button();
+            this.label19 = new System.Windows.Forms.Label();
+            this.textBoxEor = new System.Windows.Forms.TextBox();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
-            this.splitContainer2.Panel1.SuspendLayout();
-            this.splitContainer2.Panel2.SuspendLayout();
-            this.splitContainer2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.cableoffset)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.higherud)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lowerud)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.sheavecirc)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.maxcable)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lowerud)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.higherud)).BeginInit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.loginterval)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sheavecirc)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -103,6 +105,9 @@ namespace serial_port_monitor
             this.splitContainer3.Panel1.SuspendLayout();
             this.splitContainer3.Panel2.SuspendLayout();
             this.splitContainer3.SuspendLayout();
+            this.groupBox2.SuspendLayout();
+            this.groupBox3.SuspendLayout();
+            this.groupBox4.SuspendLayout();
             this.SuspendLayout();
             // 
             // splitContainer1
@@ -114,62 +119,33 @@ namespace serial_port_monitor
             // 
             // splitContainer1.Panel1
             // 
-            this.splitContainer1.Panel1.Controls.Add(this.splitContainer2);
+            this.splitContainer1.Panel1.Controls.Add(this.label15);
+            this.splitContainer1.Panel1.Controls.Add(this.label7);
+            this.splitContainer1.Panel1.Controls.Add(this.label16);
+            this.splitContainer1.Panel1.Controls.Add(this.label13);
+            this.splitContainer1.Panel1.Controls.Add(this.lowerud);
+            this.splitContainer1.Panel1.Controls.Add(this.textBox3);
+            this.splitContainer1.Panel1.Controls.Add(this.higherud);
+            this.splitContainer1.Panel1.Controls.Add(this.label3);
+            this.splitContainer1.Panel1.Controls.Add(this.maxcable);
+            this.splitContainer1.Panel1.Controls.Add(this.sheavenumber);
+            this.splitContainer1.Panel1.Controls.Add(this.cableoffset);
+            this.splitContainer1.Panel1.Controls.Add(this.label12);
             // 
             // splitContainer1.Panel2
             // 
-            this.splitContainer1.Panel2.Controls.Add(this.comboBox1);
-            this.splitContainer1.Panel2.Controls.Add(this.comboBox2);
+            this.splitContainer1.Panel2.Controls.Add(this.groupBox4);
+            this.splitContainer1.Panel2.Controls.Add(this.groupBox3);
+            this.splitContainer1.Panel2.Controls.Add(this.groupBox2);
             this.splitContainer1.Panel2.Controls.Add(this.groupBox1);
-            this.splitContainer1.Panel2.Controls.Add(this.label5);
-            this.splitContainer1.Panel2.Controls.Add(this.label6);
-            this.splitContainer1.Panel2.Controls.Add(this.connect1);
-            this.splitContainer1.Panel2.Controls.Add(this.button4);
-            this.splitContainer1.Panel2.Controls.Add(this.connect2);
-            this.splitContainer1.Panel2.Controls.Add(this.save);
-            this.splitContainer1.Panel2.Controls.Add(this.load);
-            this.splitContainer1.Panel2.Controls.Add(this.logstart);
-            this.splitContainer1.Panel2.Controls.Add(this.logstop);
-            this.splitContainer1.Panel2.Controls.Add(this.loginterval);
             this.splitContainer1.Size = new System.Drawing.Size(946, 467);
             this.splitContainer1.SplitterDistance = 270;
             this.splitContainer1.TabIndex = 0;
             // 
-            // splitContainer2
-            // 
-            this.splitContainer2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.splitContainer2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer2.Location = new System.Drawing.Point(0, 0);
-            this.splitContainer2.Name = "splitContainer2";
-            this.splitContainer2.Orientation = System.Windows.Forms.Orientation.Horizontal;
-            // 
-            // splitContainer2.Panel1
-            // 
-            this.splitContainer2.Panel1.BackColor = System.Drawing.SystemColors.Window;
-            this.splitContainer2.Panel1.Controls.Add(this.label3);
-            this.splitContainer2.Panel1.Controls.Add(this.cableoffset);
-            // 
-            // splitContainer2.Panel2
-            // 
-            this.splitContainer2.Panel2.BackColor = System.Drawing.SystemColors.Window;
-            this.splitContainer2.Panel2.Controls.Add(this.label13);
-            this.splitContainer2.Panel2.Controls.Add(this.label7);
-            this.splitContainer2.Panel2.Controls.Add(this.sheavenumber);
-            this.splitContainer2.Panel2.Controls.Add(this.maxcable);
-            this.splitContainer2.Panel2.Controls.Add(this.textBox3);
-            this.splitContainer2.Panel2.Controls.Add(this.label12);
-            this.splitContainer2.Panel2.Controls.Add(this.label15);
-            this.splitContainer2.Panel2.Controls.Add(this.label16);
-            this.splitContainer2.Panel2.Controls.Add(this.lowerud);
-            this.splitContainer2.Panel2.Controls.Add(this.higherud);
-            this.splitContainer2.Size = new System.Drawing.Size(270, 467);
-            this.splitContainer2.SplitterDistance = 70;
-            this.splitContainer2.TabIndex = 0;
-            // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(79, 14);
+            this.label3.Location = new System.Drawing.Point(79, 73);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(112, 13);
             this.label3.TabIndex = 1;
@@ -178,8 +154,8 @@ namespace serial_port_monitor
             // 
             // cableoffset
             // 
-            this.cableoffset.DecimalPlaces = 2;
-            this.cableoffset.Location = new System.Drawing.Point(75, 30);
+            this.cableoffset.DecimalPlaces = 4;
+            this.cableoffset.Location = new System.Drawing.Point(21, 89);
             this.cableoffset.Maximum = new decimal(new int[] {
             99999,
             0,
@@ -191,122 +167,41 @@ namespace serial_port_monitor
             0,
             -2147483648});
             this.cableoffset.Name = "cableoffset";
-            this.cableoffset.Size = new System.Drawing.Size(120, 20);
+            this.cableoffset.Size = new System.Drawing.Size(224, 20);
             this.cableoffset.TabIndex = 1;
             this.cableoffset.ValueChanged += new System.EventHandler(this.numericUpDown1_ValueChanged);
             // 
-            // higherud
+            // label13
             // 
-            this.higherud.Location = new System.Drawing.Point(136, 168);
-            this.higherud.Maximum = new decimal(new int[] {
-            1000000,
-            0,
-            0,
-            0});
-            this.higherud.Name = "higherud";
-            this.higherud.Size = new System.Drawing.Size(112, 20);
-            this.higherud.TabIndex = 14;
-            this.higherud.ValueChanged += new System.EventHandler(this.numericUpDown5_ValueChanged);
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(48, 137);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(164, 13);
+            this.label13.TabIndex = 1;
+            this.label13.Text = "Maximum Cable Length In Meters";
             // 
-            // lowerud
+            // label7
             // 
-            this.lowerud.Location = new System.Drawing.Point(24, 168);
-            this.lowerud.Maximum = new decimal(new int[] {
-            1000000,
-            0,
-            0,
-            0});
-            this.lowerud.Name = "lowerud";
-            this.lowerud.Size = new System.Drawing.Size(105, 20);
-            this.lowerud.TabIndex = 13;
-            this.lowerud.ValueChanged += new System.EventHandler(this.numericUpDown4_ValueChanged);
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(82, 195);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(109, 13);
+            this.label7.TabIndex = 1;
+            this.label7.Text = "Voltage From Sheave";
             // 
-            // label16
+            // sheavenumber
             // 
-            this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(159, 153);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(64, 13);
-            this.label16.TabIndex = 12;
-            this.label16.Text = "Higher Gate";
-            // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(44, 153);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(62, 13);
-            this.label15.TabIndex = 11;
-            this.label15.Text = "Lower Gate";
-            // 
-            // sheavecirc
-            // 
-            this.sheavecirc.DecimalPlaces = 2;
-            this.sheavecirc.Location = new System.Drawing.Point(280, 35);
-            this.sheavecirc.Name = "sheavecirc";
-            this.sheavecirc.Size = new System.Drawing.Size(224, 20);
-            this.sheavecirc.TabIndex = 4;
-            this.sheavecirc.ValueChanged += new System.EventHandler(this.numericUpDown2_ValueChanged);
-            // 
-            // textBox1
-            // 
-            this.textBox1.BackColor = System.Drawing.SystemColors.Window;
-            this.textBox1.Location = new System.Drawing.Point(51, 35);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(105, 20);
-            this.textBox1.TabIndex = 0;
-            this.textBox1.Text = "0";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(35, 21);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(121, 13);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "Raw Data From Sheave";
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(308, 19);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(162, 13);
-            this.label9.TabIndex = 1;
-            this.label9.Text = "Sheave Circumference In Inches";
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(79, 8);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(114, 13);
-            this.label12.TabIndex = 1;
-            this.label12.Text = "Sheave Block Number";
-            // 
-            // textBox2
-            // 
-            this.textBox2.BackColor = System.Drawing.Color.Gray;
-            this.textBox2.Location = new System.Drawing.Point(163, 35);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(111, 20);
-            this.textBox2.TabIndex = 0;
-            this.textBox2.Text = "0";
-            // 
-            // textBox3
-            // 
-            this.textBox3.BackColor = System.Drawing.Color.Gray;
-            this.textBox3.Location = new System.Drawing.Point(23, 124);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(224, 20);
-            this.textBox3.TabIndex = 2;
-            this.textBox3.Text = "0";
+            this.sheavenumber.Location = new System.Drawing.Point(21, 29);
+            this.sheavenumber.Name = "sheavenumber";
+            this.sheavenumber.Size = new System.Drawing.Size(224, 20);
+            this.sheavenumber.TabIndex = 6;
+            this.sheavenumber.TextChanged += new System.EventHandler(this.sheavenumber_TextChanged);
+            this.sheavenumber.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.sheavenumber_KeyPress);
             // 
             // maxcable
             // 
-            this.maxcable.DecimalPlaces = 2;
-            this.maxcable.Location = new System.Drawing.Point(23, 74);
+            this.maxcable.DecimalPlaces = 4;
+            this.maxcable.Location = new System.Drawing.Point(21, 153);
             this.maxcable.Maximum = new decimal(new int[] {
             999999,
             0,
@@ -317,87 +212,83 @@ namespace serial_port_monitor
             this.maxcable.TabIndex = 8;
             this.maxcable.ValueChanged += new System.EventHandler(this.numericUpDown3_ValueChanged);
             // 
-            // sheavenumber
+            // textBox3
             // 
-            this.sheavenumber.Location = new System.Drawing.Point(23, 24);
-            this.sheavenumber.Name = "sheavenumber";
-            this.sheavenumber.Size = new System.Drawing.Size(224, 20);
-            this.sheavenumber.TabIndex = 6;
-            this.sheavenumber.TextChanged += new System.EventHandler(this.sheavenumber_TextChanged);
+            this.textBox3.BackColor = System.Drawing.Color.LightGray;
+            this.textBox3.Location = new System.Drawing.Point(21, 211);
+            this.textBox3.Name = "textBox3";
+            this.textBox3.ReadOnly = true;
+            this.textBox3.Size = new System.Drawing.Size(224, 20);
+            this.textBox3.TabIndex = 2;
+            this.textBox3.Text = "0";
             // 
-            // label7
+            // label12
             // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(79, 108);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(109, 13);
-            this.label7.TabIndex = 1;
-            this.label7.Text = "Voltage From Sheave";
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(77, 13);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(114, 13);
+            this.label12.TabIndex = 1;
+            this.label12.Text = "Sheave Block Number";
             // 
-            // label4
+            // label15
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(198, 21);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(35, 13);
-            this.label4.TabIndex = 1;
-            this.label4.Text = "Count";
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(50, 260);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(53, 13);
+            this.label15.TabIndex = 11;
+            this.label15.Text = "Low Gate";
             // 
-            // label13
+            // label16
             // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(50, 58);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(164, 13);
-            this.label13.TabIndex = 1;
-            this.label13.Text = "Maximum Cable Length In Meters";
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(165, 260);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(55, 13);
+            this.label16.TabIndex = 12;
+            this.label16.Text = "High Gate";
             // 
-            // label8
+            // lowerud
             // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(538, 62);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(35, 13);
-            this.label8.TabIndex = 5;
-            this.label8.Text = "label8";
+            this.lowerud.Location = new System.Drawing.Point(21, 275);
+            this.lowerud.Maximum = new decimal(new int[] {
+            1000000,
+            0,
+            0,
+            0});
+            this.lowerud.Name = "lowerud";
+            this.lowerud.Size = new System.Drawing.Size(103, 20);
+            this.lowerud.TabIndex = 13;
+            this.lowerud.ValueChanged += new System.EventHandler(this.numericUpDown4_ValueChanged);
             // 
-            // button2
+            // higherud
             // 
-            this.button2.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.button2.Location = new System.Drawing.Point(753, 35);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(167, 20);
-            this.button2.TabIndex = 3;
-            this.button2.Text = "Hardware Reset At Sheave";
-            this.button2.UseVisualStyleBackColor = false;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.higherud.Location = new System.Drawing.Point(142, 275);
+            this.higherud.Maximum = new decimal(new int[] {
+            1000000,
+            0,
+            0,
+            0});
+            this.higherud.Name = "higherud";
+            this.higherud.Size = new System.Drawing.Size(103, 20);
+            this.higherud.TabIndex = 14;
+            this.higherud.ValueChanged += new System.EventHandler(this.numericUpDown5_ValueChanged);
             // 
-            // button1
+            // label18
             // 
-            this.button1.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.button1.Location = new System.Drawing.Point(586, 35);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(161, 20);
-            this.button1.TabIndex = 1;
-            this.button1.Text = "Local Reset";
-            this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.tare_Reset);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(645, 19);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(41, 13);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "Zero: 0";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(222, 16);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(108, 13);
+            this.label18.TabIndex = 15;
+            this.label18.Text = "Logging Interval (min)";
             // 
             // comboBox1
             // 
             this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(34, 188);
+            this.comboBox1.Location = new System.Drawing.Point(14, 39);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(121, 21);
             this.comboBox1.TabIndex = 2;
@@ -407,7 +298,7 @@ namespace serial_port_monitor
             // 
             this.comboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(34, 262);
+            this.comboBox2.Location = new System.Drawing.Point(14, 92);
             this.comboBox2.Name = "comboBox2";
             this.comboBox2.Size = new System.Drawing.Size(121, 21);
             this.comboBox2.TabIndex = 2;
@@ -420,7 +311,7 @@ namespace serial_port_monitor
             this.groupBox1.Controls.Add(this.radio_str);
             this.groupBox1.Location = new System.Drawing.Point(34, 29);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(200, 118);
+            this.groupBox1.Size = new System.Drawing.Size(343, 89);
             this.groupBox1.TabIndex = 6;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Output Format";
@@ -463,7 +354,7 @@ namespace serial_port_monitor
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(31, 172);
+            this.label5.Location = new System.Drawing.Point(11, 23);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(55, 13);
             this.label5.TabIndex = 7;
@@ -472,7 +363,7 @@ namespace serial_port_monitor
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(31, 239);
+            this.label6.Location = new System.Drawing.Point(12, 76);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(54, 13);
             this.label6.TabIndex = 7;
@@ -480,7 +371,7 @@ namespace serial_port_monitor
             // 
             // connect1
             // 
-            this.connect1.Location = new System.Drawing.Point(164, 187);
+            this.connect1.Location = new System.Drawing.Point(144, 38);
             this.connect1.Name = "connect1";
             this.connect1.Size = new System.Drawing.Size(75, 23);
             this.connect1.TabIndex = 8;
@@ -490,7 +381,7 @@ namespace serial_port_monitor
             // 
             // button4
             // 
-            this.button4.Location = new System.Drawing.Point(263, 187);
+            this.button4.Location = new System.Drawing.Point(243, 38);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(75, 23);
             this.button4.TabIndex = 9;
@@ -500,7 +391,7 @@ namespace serial_port_monitor
             // 
             // connect2
             // 
-            this.connect2.Location = new System.Drawing.Point(164, 261);
+            this.connect2.Location = new System.Drawing.Point(144, 91);
             this.connect2.Name = "connect2";
             this.connect2.Size = new System.Drawing.Size(75, 23);
             this.connect2.TabIndex = 8;
@@ -510,9 +401,9 @@ namespace serial_port_monitor
             // 
             // save
             // 
-            this.save.Location = new System.Drawing.Point(263, 71);
+            this.save.Location = new System.Drawing.Point(103, 19);
             this.save.Name = "save";
-            this.save.Size = new System.Drawing.Size(75, 23);
+            this.save.Size = new System.Drawing.Size(82, 23);
             this.save.TabIndex = 10;
             this.save.Text = "Save Settings";
             this.save.UseVisualStyleBackColor = true;
@@ -520,19 +411,19 @@ namespace serial_port_monitor
             // 
             // load
             // 
-            this.load.Location = new System.Drawing.Point(263, 42);
+            this.load.Location = new System.Drawing.Point(16, 19);
             this.load.Name = "load";
-            this.load.Size = new System.Drawing.Size(75, 23);
+            this.load.Size = new System.Drawing.Size(81, 23);
             this.load.TabIndex = 11;
-            this.load.Text = "Load";
+            this.load.Text = "Load Settings";
             this.load.UseVisualStyleBackColor = true;
             this.load.Click += new System.EventHandler(this.load_Click);
             // 
             // logstart
             // 
-            this.logstart.Location = new System.Drawing.Point(33, 316);
+            this.logstart.Location = new System.Drawing.Point(14, 30);
             this.logstart.Name = "logstart";
-            this.logstart.Size = new System.Drawing.Size(113, 23);
+            this.logstart.Size = new System.Drawing.Size(99, 23);
             this.logstart.TabIndex = 12;
             this.logstart.Text = "Start Logging";
             this.logstart.UseVisualStyleBackColor = true;
@@ -540,9 +431,9 @@ namespace serial_port_monitor
             // 
             // logstop
             // 
-            this.logstop.Location = new System.Drawing.Point(152, 316);
+            this.logstop.Location = new System.Drawing.Point(119, 30);
             this.logstop.Name = "logstop";
-            this.logstop.Size = new System.Drawing.Size(87, 23);
+            this.logstop.Size = new System.Drawing.Size(99, 23);
             this.logstop.TabIndex = 13;
             this.logstop.Text = "Stop Logging";
             this.logstop.UseVisualStyleBackColor = true;
@@ -550,8 +441,8 @@ namespace serial_port_monitor
             // 
             // loginterval
             // 
-            this.loginterval.DecimalPlaces = 3;
-            this.loginterval.Location = new System.Drawing.Point(244, 318);
+            this.loginterval.DecimalPlaces = 4;
+            this.loginterval.Location = new System.Drawing.Point(225, 32);
             this.loginterval.Maximum = new decimal(new int[] {
             1000,
             0,
@@ -563,7 +454,7 @@ namespace serial_port_monitor
             0,
             196608});
             this.loginterval.Name = "loginterval";
-            this.loginterval.Size = new System.Drawing.Size(73, 20);
+            this.loginterval.Size = new System.Drawing.Size(105, 20);
             this.loginterval.TabIndex = 14;
             this.loginterval.Value = new decimal(new int[] {
             1,
@@ -571,6 +462,103 @@ namespace serial_port_monitor
             0,
             0});
             this.loginterval.ValueChanged += new System.EventHandler(this.numericUpDown1_ValueChanged_1);
+            // 
+            // sheavecirc
+            // 
+            this.sheavecirc.DecimalPlaces = 4;
+            this.sheavecirc.Location = new System.Drawing.Point(267, 35);
+            this.sheavecirc.Name = "sheavecirc";
+            this.sheavecirc.Size = new System.Drawing.Size(162, 20);
+            this.sheavecirc.TabIndex = 4;
+            this.sheavecirc.ValueChanged += new System.EventHandler(this.numericUpDown2_ValueChanged);
+            // 
+            // textBox1
+            // 
+            this.textBox1.BackColor = System.Drawing.SystemColors.Window;
+            this.textBox1.Location = new System.Drawing.Point(38, 35);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.ReadOnly = true;
+            this.textBox1.Size = new System.Drawing.Size(118, 20);
+            this.textBox1.TabIndex = 0;
+            this.textBox1.Text = "0";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(35, 21);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(121, 13);
+            this.label2.TabIndex = 1;
+            this.label2.Text = "Raw Data From Sheave";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(267, 21);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(162, 13);
+            this.label9.TabIndex = 1;
+            this.label9.Text = "Sheave Circumference In Inches";
+            // 
+            // textBox2
+            // 
+            this.textBox2.BackColor = System.Drawing.Color.LightGray;
+            this.textBox2.Location = new System.Drawing.Point(163, 35);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.ReadOnly = true;
+            this.textBox2.Size = new System.Drawing.Size(96, 20);
+            this.textBox2.TabIndex = 0;
+            this.textBox2.Text = "0";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(193, 21);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(35, 13);
+            this.label4.TabIndex = 1;
+            this.label4.Text = "Count";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(384, 62);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(35, 13);
+            this.label8.TabIndex = 5;
+            this.label8.Text = "label8";
+            // 
+            // button2
+            // 
+            this.button2.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.button2.Location = new System.Drawing.Point(756, 35);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(167, 20);
+            this.button2.TabIndex = 3;
+            this.button2.Text = "Hardware Reset At Sheave";
+            this.button2.UseVisualStyleBackColor = false;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.button1.Location = new System.Drawing.Point(651, 35);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(99, 20);
+            this.button1.TabIndex = 1;
+            this.button1.Text = "Local Reset";
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.tare_Reset);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(679, 19);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(41, 13);
+            this.label1.TabIndex = 2;
+            this.label1.Text = "Zero: 0";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // label17
             // 
@@ -703,6 +691,9 @@ namespace serial_port_monitor
             // 
             // splitContainer3.Panel1
             // 
+            this.splitContainer3.Panel1.Controls.Add(this.eorReset);
+            this.splitContainer3.Panel1.Controls.Add(this.label19);
+            this.splitContainer3.Panel1.Controls.Add(this.textBoxEor);
             this.splitContainer3.Panel1.Controls.Add(this.label1);
             this.splitContainer3.Panel1.Controls.Add(this.button1);
             this.splitContainer3.Panel1.Controls.Add(this.button2);
@@ -721,33 +712,97 @@ namespace serial_port_monitor
             this.splitContainer3.SplitterDistance = 84;
             this.splitContainer3.TabIndex = 2;
             // 
+            // eorReset
+            // 
+            this.eorReset.Location = new System.Drawing.Point(512, 58);
+            this.eorReset.Name = "eorReset";
+            this.eorReset.Size = new System.Drawing.Size(52, 19);
+            this.eorReset.TabIndex = 8;
+            this.eorReset.Text = "Reset";
+            this.eorReset.UseVisualStyleBackColor = true;
+            this.eorReset.Click += new System.EventHandler(this.eorReset_Click);
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Location = new System.Drawing.Point(524, 21);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(30, 13);
+            this.label19.TabIndex = 7;
+            this.label19.Text = "EOR";
+            // 
+            // textBoxEor
+            // 
+            this.textBoxEor.BackColor = System.Drawing.Color.LightGray;
+            this.textBoxEor.Location = new System.Drawing.Point(490, 34);
+            this.textBoxEor.Name = "textBoxEor";
+            this.textBoxEor.ReadOnly = true;
+            this.textBoxEor.Size = new System.Drawing.Size(100, 20);
+            this.textBoxEor.TabIndex = 6;
+            this.textBoxEor.Text = "0";
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.comboBox1);
+            this.groupBox2.Controls.Add(this.comboBox2);
+            this.groupBox2.Controls.Add(this.label5);
+            this.groupBox2.Controls.Add(this.label6);
+            this.groupBox2.Controls.Add(this.connect1);
+            this.groupBox2.Controls.Add(this.button4);
+            this.groupBox2.Controls.Add(this.connect2);
+            this.groupBox2.Location = new System.Drawing.Point(33, 124);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(344, 125);
+            this.groupBox2.TabIndex = 16;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Serial Ports";
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.label18);
+            this.groupBox3.Controls.Add(this.logstart);
+            this.groupBox3.Controls.Add(this.logstop);
+            this.groupBox3.Controls.Add(this.loginterval);
+            this.groupBox3.Location = new System.Drawing.Point(34, 255);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(343, 68);
+            this.groupBox3.TabIndex = 17;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Logging";
+            // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.save);
+            this.groupBox4.Controls.Add(this.load);
+            this.groupBox4.Location = new System.Drawing.Point(34, 329);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(343, 56);
+            this.groupBox4.TabIndex = 18;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "Settings";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(968, 596);
             this.Controls.Add(this.splitContainer3);
             this.Name = "Form1";
             this.Text = "Form1";
             this.splitContainer1.Panel1.ResumeLayout(false);
+            this.splitContainer1.Panel1.PerformLayout();
             this.splitContainer1.Panel2.ResumeLayout(false);
-            this.splitContainer1.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
-            this.splitContainer2.Panel1.ResumeLayout(false);
-            this.splitContainer2.Panel1.PerformLayout();
-            this.splitContainer2.Panel2.ResumeLayout(false);
-            this.splitContainer2.Panel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
-            this.splitContainer2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.cableoffset)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.higherud)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lowerud)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.sheavecirc)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.maxcable)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lowerud)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.higherud)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.loginterval)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sheavecirc)).EndInit();
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
@@ -757,6 +812,11 @@ namespace serial_port_monitor
             this.splitContainer3.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer3)).EndInit();
             this.splitContainer3.ResumeLayout(false);
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
+            this.groupBox4.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -764,7 +824,6 @@ namespace serial_port_monitor
         #endregion
 
         private System.Windows.Forms.SplitContainer splitContainer1;
-        private System.Windows.Forms.SplitContainer splitContainer2;
         private System.Windows.Forms.NumericUpDown cableoffset;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.TextBox textBox2;
@@ -815,6 +874,13 @@ namespace serial_port_monitor
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.SplitContainer splitContainer3;
+        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.TextBox textBoxEor;
+        private System.Windows.Forms.Button eorReset;
+        private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.GroupBox groupBox2;
     }
 }
 

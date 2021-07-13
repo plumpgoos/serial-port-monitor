@@ -42,7 +42,7 @@ namespace serial_port_monitor
 
         public int hardcount;
 
-        private System.Windows.Forms.Timer timer;
+        private System.Threading.Timer timer;
         public System.Windows.Forms.Timer flash;
         public System.Windows.Forms.Timer myTimer;
         public System.Windows.Forms.Timer logtimer;
@@ -52,6 +52,10 @@ namespace serial_port_monitor
         public FileInfo logfi;
 
         SoundPlayer alert;
+
+        public long eor;
+
+        private System.ComponentModel.BackgroundWorker backgroundWorker;
 
         public Form1()
         {
@@ -67,14 +71,16 @@ namespace serial_port_monitor
 
             logging = false;
 
+            eor = 0;
             raw = 0;
             volt = false;
             hardcount = 0;
 
-            timer = new System.Windows.Forms.Timer();
-            timer.Tick += new EventHandler(timer_Tick);
-            timer.Interval = MILLISECONDS; // in miliseconds
-            timer.Start();
+            //timer = new System.Windows.Forms.Timer();
+            //timer.Tick += new EventHandler(timer_Tick);
+            //timer.Interval = MILLISECONDS; // in miliseconds
+            //timer.Start();
+            timer = new System.Threading.Timer(_ => timer_Tick(), null, 0, MILLISECONDS);
 
             alert = new SoundPlayer(@"c:\Windows\Media\Windows Error.wav");
             lower = 0;
@@ -98,9 +104,20 @@ namespace serial_port_monitor
             {
                 Console.WriteLine(ports[i]);
             }
+
+            backgroundWorker = new System.ComponentModel.BackgroundWorker();
+            backgroundWorker.DoWork +=
+               new DoWorkEventHandler(timer_Tick);
+            backgroundWorker.RunWorkerCompleted +=
+               new RunWorkerCompletedEventHandler(workCompleted);
+
             ReadSettings();
         }
 
+        private void workCompleted(System.Object sender, System.EventArgs e)
+        {
+            //Console.WriteLine("AISGHOEASGEHO");
+        }
         private void ReadSettings()
         {
             var settings = Properties.Settings.Default;
@@ -223,6 +240,12 @@ namespace serial_port_monitor
         private void timer_Tick(object sender, EventArgs e)
         {
             DataSendHandler(outval);
+            return;
+        }
+        private void timer_Tick()
+        {
+            if (!backgroundWorker.IsBusy)
+                backgroundWorker.RunWorkerAsync();
         }
 
         private void flash_Tick(object sender, EventArgs e)
@@ -278,6 +301,8 @@ namespace serial_port_monitor
 
             if (indata.Equals("\r")) {
                 Console.WriteLine("Empty input, skipping");
+                eor++;
+                SetEOR(eor);
                 return;
             }
 
@@ -298,6 +323,8 @@ namespace serial_port_monitor
                 catch (FormatException)
                 {
                     Console.WriteLine("Unable to parse input: " + count + " " + voldat);
+                    eor++;
+                    SetEOR(eor);
                     return;
                 }
 
@@ -385,14 +412,18 @@ namespace serial_port_monitor
                 writeport.Write(f_text);
                 Console.WriteLine("output to writeport: " + f_text);
             }
+
+            return;
         }
 
         private string strOut(decimal value)
         {
-            string f = String.Format("{0:+000#;-000#;+0000;}\r\n", value);
+            value = Decimal.Ceiling(meters);
+            string f = String.Format("3:{0:+000#;-000#;+0000;}\r\n", value);
             Console.WriteLine(f);
             return f;
         }
+
 
         private string mcOut(decimal value)
         {
@@ -408,6 +439,25 @@ namespace serial_port_monitor
         delegate void SetTextCallback4(string text);
         delegate void SetTextCallback5();
         delegate void SetTextCallback6();
+        delegate void SetEORCallback(long val);
+
+        private void SetEOR(long val)
+        {
+
+
+            // InvokeRequired required compares the thread ID of the
+            // calling thread to the thread ID of the creating thread.
+            // If these threads are different, it returns true.
+            if (this.textBox1.InvokeRequired)
+            {
+                SetEORCallback d = new SetEORCallback(SetEOR);
+                this.Invoke(d, new object[] { val });
+            }
+            else
+            {
+                this.textBoxEor.Text = val.ToString();
+            }
+        }
 
         //raw count
         private void SetText1(string text)
@@ -666,9 +716,12 @@ namespace serial_port_monitor
 
         private void connect1_Click(object sender, EventArgs e)
         {
-
+            if (comboBox1.SelectedItem == null)
+            {
+                return;
+            }
             
-            if (readport == null || !readport.IsOpen)
+            if ((readport == null || !readport.IsOpen))
             {
                 //comboBox1.SelectedItem = null;
                 readport = openPort(comboBox1.SelectedItem.ToString(), readport);
@@ -689,6 +742,11 @@ namespace serial_port_monitor
 
         private void connect2_Click(object sender, EventArgs e)
         {
+            if (comboBox1.SelectedItem == null)
+            {
+                return;
+            }
+
             if (writeport == null || !writeport.IsOpen)
             {
                 //comboBox1.SelectedItem = null;
@@ -911,6 +969,22 @@ namespace serial_port_monitor
                 LogDat();
                 logtimer.Interval = (int)(((NumericUpDown)sender).Value*60000);
             }
+        }
+
+        private void sheavenumber_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            // Verify that the pressed key isn't CTRL or any non-numeric digit
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+
+        }
+
+        private void eorReset_Click(object sender, EventArgs e)
+        {
+            eor = 0;
+            SetEOR(eor);
         }
     }
 }
