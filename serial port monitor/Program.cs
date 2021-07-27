@@ -17,7 +17,7 @@ namespace serial_port_monitor
             //Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Form f1 = new Form1();
-            f1.Text = "Serial Port Monitor v0.4";
+            f1.Text = "Serial Port Monitor v0.5";
             Application.Run(f1);
         }
     }

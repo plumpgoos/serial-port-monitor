@@ -82,7 +82,6 @@ namespace serial_port_monitor
             //timer.Tick += new EventHandler(timer_Tick);
             //timer.Interval = MILLISECONDS; // in miliseconds
             //timer.Start();
-            timer = new System.Threading.Timer(_ => timer_Tick(), null, 0, MILLISECONDS);
 
             alert = new SoundPlayer(@"c:\Windows\Media\Windows Error.wav");
             lower = 0;
@@ -113,6 +112,7 @@ namespace serial_port_monitor
             backgroundWorker.RunWorkerCompleted +=
                new RunWorkerCompletedEventHandler(workCompleted);
 
+            timer = new System.Threading.Timer(_ => timer_Tick(), null, 0, MILLISECONDS);
             ReadSettings();
         }
 
