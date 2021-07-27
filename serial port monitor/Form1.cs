@@ -24,7 +24,9 @@ namespace serial_port_monitor
         public decimal offset;
         public decimal tare;
         public decimal raw;
+        public decimal rawc;
         public decimal outval;
+        public decimal outvalc;
         public decimal circ;
         public decimal meters;
         public decimal feet;
@@ -328,7 +330,7 @@ namespace serial_port_monitor
                     return;
                 }
 
-                decimal temp = decimal.Parse(count);
+                decimal temp = decimal.Parse(count)/sensorpoint.Value;
                 raw = temp;
                 outval = temp - tare;
                 voltage = decimal.Parse(voldat) * (((decimal)5) / 1023);
@@ -338,8 +340,8 @@ namespace serial_port_monitor
                     //string logline = String.Format("{0,-21} {1,-14} {2,-14}\n", DateTime.Now.ToString("s"), meters.ToString(), feet.ToString());
                 LogDat();
 
-                SetText1(count);
-                SetText2(count);
+                SetText1(raw.ToString());
+                SetText2(raw.ToString());
                 SetText3(voldat);
                 if (decimal.Parse(count) != 0)
                 {
@@ -464,7 +466,7 @@ namespace serial_port_monitor
         {
 
             //raw = decimal.Parse(text);
-            raw = decimal.Parse(text);
+            rawc = decimal.Parse(text);
 
             Console.WriteLine("raw: " + raw);
             // InvokeRequired required compares the thread ID of the
@@ -477,7 +479,7 @@ namespace serial_port_monitor
             }
             else
             {
-                this.textBox1.Text = raw.ToString();
+                this.textBox1.Text = rawc.ToString();
             }
         }
 
@@ -493,8 +495,8 @@ namespace serial_port_monitor
             }
             else
             {
-                outval = decimal.Parse(text) - tare;
-                this.textBox2.Text = Math.Round(outval,4).ToString();
+                outvalc = decimal.Parse(text) - tare;
+                this.textBox2.Text = Math.Round(outvalc,4).ToString();
                 DataSendHandler(outval);
                 finalSet();
             }
@@ -545,12 +547,12 @@ namespace serial_port_monitor
             }
             else
             {
-                meters = (decimal)Math.Round((circ * outval / (decimal)39.37) + offset, 4);
+                meters = (decimal)Math.Round((circ * outvalc / (decimal)39.37) + offset, 4);
                 feet = (decimal)Math.Round(meters * (decimal)3.281, 4);
 
                 SetText6();
 
-                this.finalmeter.Text = Math.Round((circ*outval/ (decimal)39.37)+offset,4).ToString();
+                this.finalmeter.Text = Math.Round((circ*outvalc/ (decimal)39.37)+offset,4).ToString();
                 int barval = (int)(meters);
                 if (barval >= 0 && barval <= this.progressBar1.Maximum)
                 this.progressBar1.Value = barval;
@@ -650,8 +652,8 @@ namespace serial_port_monitor
         {
             NumericUpDown ud = (NumericUpDown)sender;
             offset = (decimal)ud.Value;
-            SetText1(raw.ToString());
-            SetText2(raw.ToString());
+            SetText1((raw/sensorpoint.Value).ToString());
+            SetText2((raw / sensorpoint.Value).ToString());
         }
 
         //tare
@@ -659,8 +661,8 @@ namespace serial_port_monitor
         {
             tare = raw;
             this.label1.Text = "Zero: " + tare;
-            SetText1(raw.ToString());
-            SetText2(raw.ToString());
+            SetText1((raw / sensorpoint.Value).ToString());
+            SetText2((raw / sensorpoint.Value).ToString());
             Console.WriteLine("RESET");
         }
 
@@ -985,6 +987,13 @@ namespace serial_port_monitor
         {
             eor = 0;
             SetEOR(eor);
+        }
+
+        private void sensorpoint_ValueChanged(object sender, EventArgs e)
+        {
+            Console.WriteLine("HELP: " + raw.ToString());
+            SetText1((raw / sensorpoint.Value).ToString());
+            SetText2((raw / sensorpoint.Value).ToString());
         }
     }
 }
